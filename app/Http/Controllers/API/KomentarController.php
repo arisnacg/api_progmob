@@ -12,13 +12,13 @@ class KomentarController extends Controller
 
 	public function show($id){
 		return response()->json(
-			Komentar::where("postingan_id", $id)->get()
+			Komentar::findOrFail($id)
 		);
 	}
 
    public function store(Request $req){
    		$validator = Validator::make($req->all(), [
-            'isi' => 'required|string',
+            'isi' => 'required',
             'postingan_id' => "required"
         ], [
             "konten.required" => "Komentar tidak boleh kosong"

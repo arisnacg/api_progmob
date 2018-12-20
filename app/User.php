@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nama', 'email', 'password', 'api_token'
+        'nama', 'email', 'password', 'api_token', 'foto_profil'
     ];
 
     /**
@@ -30,5 +30,13 @@ class User extends Authenticatable
 
     public function postingan(){
         return $this->hasMany(Postingan::class, "user_id");
+    }
+
+    public function follower(){
+        return $this->hasMany(Follow::class, "user_id");
+    }
+
+    public function following(){
+        return $this->hasMany(Follow::class, "follower_id");
     }
 }

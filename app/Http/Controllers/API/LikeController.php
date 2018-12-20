@@ -24,8 +24,10 @@ class LikeController extends Controller
     			"user_id" => $req->user()->id
     		]);
     	}
+        $like_count = Like::where("postingan_id", $postingan_id)->count();
     	return response()->json([
     		"liked" =>$liked,
+            "like_count" => $like_count,
     		"pesan" => ($liked)? "Postingan di-like" : "Postingan di-unlike"
     	]);
     }
